@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "599718907743",
+    "project_id": "socialappkevinsalazar",
+    "storage_bucket": "socialappkevinsalazar.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599718907743:android:f47c25897af1883d6eb0ea",
+        "android_client_info": {
+          "package_name": "app.kevinsalazar.socialapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_1cSd_p4WnplE0Blo2skAWDSzUZ1TvwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
