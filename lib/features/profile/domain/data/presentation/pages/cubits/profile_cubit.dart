@@ -1,11 +1,18 @@
+import 'dart:typed_data';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/cubits/profile_states.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/repos/profile_repo.dart';
+import 'package:social_app_kevin_salazar/features/storage/domain/storage_repo.dart';
 
 class ProfileCubit extends Cubit<ProfileState>{
   final ProfileRepo profileRepo;
+  final StorageRepo storageRepo;
 
-  ProfileCubit({required this.profileRepo}):super(ProfileInitial());
+  ProfileCubit({
+  required this.profileRepo,
+   required this.storageRepo})
+   :super(ProfileInitial());
 
   //fetch user profile using repo
 Future<void> fetchUserProfile(String uid) async {
@@ -29,6 +36,8 @@ Future<void> fetchUserProfile(String uid) async {
   Future<void> updateProfile({
     required String uid,
     String? newBio,
+    Uint8List? imageWebBytes,
+    String? imageMobilePath,
   })async {
     emit (ProfileLoading());
 
@@ -42,11 +51,33 @@ Future<void> fetchUserProfile(String uid) async {
       }
 
       //profile picture update
+      String? imageDownloadUrl;
+      // ensure there is a an image
+      if(imageWebBytes !=null || imageMobilePath != null){
+        // for mobile
+        if (imageMobilePath != null){
+          //upload
+          imageDownloadUrl = 
+          await storageRepo.uploadProfileImageMobile(imageMobilePath, uid);
+        }
+        //for web
+        else if(imageWebBytes !=null){
+          //upload
+          imageDownloadUrl = await storageRepo.uploadProfileImageWeb(imageWebBytes, uid);
+        }
 
+        if(imageDownloadUrl == null){
+          emit (ProfileError("Failed to upload image"));
+          return;
+        }
+      }
 
       //update new profile
       final updatedProfile = 
-      currentUser.copyWith(newBio: newBio?? currentUser.bio ); 
+      currentUser.copyWith(
+        newBio: newBio?? currentUser.bio,
+      newProfileImageUrl: imageDownloadUrl ?? currentUser.profileImageUrl,
+      ); 
 
 
       //update in repo
