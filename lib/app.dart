@@ -5,6 +5,8 @@ import 'package:social_app_kevin_salazar/features/auth/presentation/cubits/auth_
 import 'package:social_app_kevin_salazar/features/auth/presentation/cubits/auth_states.dart';
 import 'package:social_app_kevin_salazar/features/auth/presentation/pages/auth_page.dart';
 import 'package:social_app_kevin_salazar/features/home/presentation/pages/home_page.dart';
+import 'package:social_app_kevin_salazar/features/post/data/firebase_post_repo.dart';
+import 'package:social_app_kevin_salazar/features/post/presentation/cubits/post_cubit.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/cubits/profile_cubit.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/firebase_profile_repo.dart';
 import 'package:social_app_kevin_salazar/features/storage/data/firebase_storage_repo.dart';
@@ -39,6 +41,9 @@ class MyApp extends StatelessWidget {
 //storage repo
 final firebaseStorageRepo = FirebaseStorageRepo();
 
+// post repo
+final firebasePostRepo= FirebasePostRepo();
+
 
   MyApp({super.key});
 
@@ -59,6 +64,12 @@ final firebaseStorageRepo = FirebaseStorageRepo();
               storageRepo: firebaseStorageRepo,
               ),
             ),
+
+          //post cubit
+          BlocProvider<PostCubit>(create: (context)=> PostCubit(
+            postRepo: firebasePostRepo, storageRepo: firebaseStorageRepo
+            )
+          )
       ], 
     child:MaterialApp(
         debugShowCheckedModeBanner: false,

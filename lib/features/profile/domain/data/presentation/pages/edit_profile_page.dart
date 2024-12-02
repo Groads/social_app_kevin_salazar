@@ -138,21 +138,26 @@ final imageWebBytes = kIsWeb ? imagePickedFile?.bytes : null;
              decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary,
              shape: BoxShape.circle
              ),
-
+             clipBehavior: Clip.hardEdge,
              child: 
              // display selected image for mobile
              (!kIsWeb && imagePickedFile != null) 
              ?
-             Image.file(File(imagePickedFile!.path!),)
+             Image.file(File(imagePickedFile!.path!),
+             fit: BoxFit.cover,
+             )
              :
 
              // display seleted image for web
              (kIsWeb && webImage != null)
              ?
-             Image.memory(webImage!)
+             Image.memory(webImage!,
+             fit: BoxFit.cover
+             )
              :
              //no image selected -> display existing profile pic
-             CachedNetworkImage(imageUrl: widget.user.profileImageUrl,
+             CachedNetworkImage(
+              imageUrl: widget.user.profileImageUrl,
              //loading..
              placeholder: (context, url) => const CircularProgressIndicator(),
              //error -> failed to load 
@@ -165,8 +170,10 @@ final imageWebBytes = kIsWeb ? imagePickedFile?.bytes : null;
 
              //loaded..
              imageBuilder: (context, imageProvider) => 
-             Image(image: imageProvider,)
-             )
+             Image(image: imageProvider,
+                   fit: BoxFit.cover,
+               ),
+             ),
            ),
           ),
          
