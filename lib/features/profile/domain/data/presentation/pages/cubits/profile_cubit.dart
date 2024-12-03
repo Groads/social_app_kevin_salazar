@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/cubits/profile_states.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/entities/profile_user.dart';
@@ -96,4 +95,16 @@ Future<ProfileUser?> getUserProfile(String uid)async {
       emit(ProfileError("Error updating profile: $e"));
     }
   }
+
+// toogle follow/unfollow
+Future<void> toggleFollow(String currentUserId, String targetUserId) async {
+   try {
+
+    await profileRepo.toggleFollow(currentUserId, targetUserId );
+
+   }
+   catch (e){
+    emit(ProfileError("Error toggling follow:$e"));
+   }
+}
 }

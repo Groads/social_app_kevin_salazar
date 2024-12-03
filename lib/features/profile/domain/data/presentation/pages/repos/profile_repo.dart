@@ -10,4 +10,5 @@ import 'package:social_app_kevin_salazar/features/profile/domain/data/presentati
 abstract class ProfileRepo {
   Future<ProfileUser?> fetchUserProfile(String uid);
   Future<void> updateProfile(ProfileUser updateProfile);
+  Future<void> toggleFollow(String currentUid, String targetUid);
 }
