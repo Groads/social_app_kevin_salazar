@@ -13,6 +13,7 @@ import 'package:social_app_kevin_salazar/features/profile/domain/data/presentati
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/cubits/profile_states.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/edit_profile_page.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/follower_page.dart';
+import 'package:social_app_kevin_salazar/responsive/constrained_scaffold.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -104,7 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
 
         //SCAFFOLD
-        return Scaffold(
+        return ConstrainedScaffold(
 
       //  APP BAR
       appBar: AppBar(

@@ -5,6 +5,7 @@ import 'package:social_app_kevin_salazar/features/post/presentation/components/p
 import 'package:social_app_kevin_salazar/features/post/presentation/cubits/post_cubit.dart';
 import 'package:social_app_kevin_salazar/features/post/presentation/cubits/post_states.dart';
 import 'package:social_app_kevin_salazar/features/post/presentation/pages/upload_post_page.dart';
+import 'package:social_app_kevin_salazar/responsive/constrained_scaffold.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -39,7 +40,7 @@ late final postCubit = context.read<PostCubit>();
   @override
   Widget build(BuildContext context) {
     //SCAFFOLD
-    return Scaffold(
+    return ConstrainedScaffold(
       //APP BAR
       appBar: AppBar(
       title: const Text("Home"),

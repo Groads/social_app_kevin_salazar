@@ -10,6 +10,7 @@ import 'package:social_app_kevin_salazar/features/auth/presentation/cubits/auth_
 import 'package:social_app_kevin_salazar/features/post/domain/entities/post.dart';
 import 'package:social_app_kevin_salazar/features/post/presentation/cubits/post_cubit.dart';
 import 'package:social_app_kevin_salazar/features/post/presentation/cubits/post_states.dart';
+import 'package:social_app_kevin_salazar/responsive/constrained_scaffold.dart';
 
 class UploadPostPage extends StatefulWidget {
   const UploadPostPage({super.key});
@@ -140,7 +141,7 @@ class _MyWidgetState extends State<UploadPostPage> {
 
   Widget buildUploadPage(){
     //SCAFFOLD
-      return Scaffold(
+      return ConstrainedScaffold(
 
       //  APP BAR
       appBar: AppBar(

@@ -11,6 +11,7 @@ SETTINGS PAGE
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_app_kevin_salazar/responsive/constrained_scaffold.dart';
 import 'package:social_app_kevin_salazar/themes/theme_cubit.dart';
 
 class SettingsPages extends StatelessWidget {
@@ -29,7 +30,7 @@ class SettingsPages extends StatelessWidget {
 
      //SCAFFOLD
     
-    return Scaffold(
+    return ConstrainedScaffold(
       appBar: AppBar(title: const Text("Settings"),
       ),
 

@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app_kevin_salazar/features/auth/presentation/components/my_button.dart';
 import 'package:social_app_kevin_salazar/features/auth/presentation/components/my_text_field.dart';
+import 'package:social_app_kevin_salazar/responsive/constrained_scaffold.dart';
 
 import '../cubits/auth_cubit.dart';
 
@@ -67,7 +68,7 @@ else{
   Widget build(BuildContext context) {
 
     //SCAFFOLD
-    return Scaffold(
+    return ConstrainedScaffold(
 
       // BODY
       body:SafeArea(

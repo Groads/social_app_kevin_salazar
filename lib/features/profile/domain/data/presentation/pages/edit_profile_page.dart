@@ -11,6 +11,7 @@ import 'package:social_app_kevin_salazar/features/auth/presentation/components/m
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/cubits/profile_cubit.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/cubits/profile_states.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/entities/profile_user.dart';
+import 'package:social_app_kevin_salazar/responsive/constrained_scaffold.dart';
 
 class EditProfilePage extends StatefulWidget {
   final ProfileUser user;
@@ -117,7 +118,7 @@ final imageWebBytes = kIsWeb ? imagePickedFile?.bytes : null;
   }
 
   Widget buildEditPage(){
-    return Scaffold(
+    return ConstrainedScaffold(
       appBar: AppBar(title: const Text("Edit Profile"),
       foregroundColor: Theme.of(context).colorScheme.primary,
       actions: [

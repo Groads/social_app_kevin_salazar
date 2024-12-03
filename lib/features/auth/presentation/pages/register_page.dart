@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_app_kevin_salazar/features/auth/presentation/cubits/auth_cubit.dart';
+import 'package:social_app_kevin_salazar/responsive/constrained_scaffold.dart';
 import '../components/my_button.dart';
 import '../components/my_text_field.dart';
 
@@ -68,7 +69,7 @@ void dispose() {
   Widget build(BuildContext context) {
 
     //SCAFFOLD
-    return Scaffold(
+    return ConstrainedScaffold(
 
       // BODY
       body:SafeArea(
