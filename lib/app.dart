@@ -9,8 +9,10 @@ import 'package:social_app_kevin_salazar/features/post/data/firebase_post_repo.d
 import 'package:social_app_kevin_salazar/features/post/presentation/cubits/post_cubit.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/cubits/profile_cubit.dart';
 import 'package:social_app_kevin_salazar/features/profile/domain/data/presentation/pages/firebase_profile_repo.dart';
+import 'package:social_app_kevin_salazar/features/search/domain/data/firebase_search_repo.dart';
+import 'package:social_app_kevin_salazar/features/search/presentation/cubits/search_cubit.dart';
 import 'package:social_app_kevin_salazar/features/storage/data/firebase_storage_repo.dart';
-import 'package:social_app_kevin_salazar/themes/light_mode.dart';
+import 'package:social_app_kevin_salazar/themes/theme_cubit.dart';
 
 
 /*
@@ -44,6 +46,9 @@ final firebaseStorageRepo = FirebaseStorageRepo();
 // post repo
 final firebasePostRepo= FirebasePostRepo();
 
+// search repo0
+final firebaseSearchRepo = FirebaseSearchRepo();
+
 
   MyApp({super.key});
 
@@ -68,12 +73,26 @@ final firebasePostRepo= FirebasePostRepo();
           //post cubit
           BlocProvider<PostCubit>(create: (context)=> PostCubit(
             postRepo: firebasePostRepo, storageRepo: firebaseStorageRepo
-            )
-          )
+            ),
+          ),
+
+       //search cubit
+       BlocProvider<SearchCubit>(
+        create: (context) => SearchCubit(searchRepo: firebaseSearchRepo),
+       ),
+
+       //theme cubit
+       BlocProvider<ThemeCubit>(
+        create: (context)=> ThemeCubit()),
       ], 
-    child:MaterialApp(
+
+    //Bloc builder: themes
+    child: BlocBuilder<ThemeCubit, ThemeData>(
+      builder: (context, currentTheme)=> MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: lightMode,
+        theme: currentTheme,
+
+        // bloc builder: check current auth state
         home: BlocConsumer<AuthCubit,AuthState>(
           builder: (context, authState) {
                 print(authState);
@@ -103,6 +122,7 @@ final firebasePostRepo= FirebasePostRepo();
           }
           ),
         ),
+    ),
       );
   }
 }

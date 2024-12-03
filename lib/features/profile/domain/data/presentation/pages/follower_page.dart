@@ -75,13 +75,13 @@ class FollowerPage extends StatelessWidget {
           }
           //user loading..
           else if (snapshot.connectionState == ConnectionState.waiting){
-            return ListTile(title: Text("Loading.."));
+            return const ListTile(title: Text("Loading.."));
 
           }
 
           //not found
           else {
-            return ListTile(title: Text("Not found.."));
+            return const ListTile(title: Text("Not found.."));
           }
          });
       }
